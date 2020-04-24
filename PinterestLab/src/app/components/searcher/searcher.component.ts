@@ -17,8 +17,14 @@ export class SearcherComponent implements OnInit {
 
   getCollectionbyInput(event) {
     console.log(event.target.value);
+    if (event.target.value === '') {
+      this.authService.getListPhotos(1)
+      .subscribe(response => {
+        this.authService.changeString(response);
+      });
+    }
     this.authService.getCollection(event.target.value).subscribe(response => {
-      console.log(response);
+      this.authService.changeString(response['results']);
     });
   }
 

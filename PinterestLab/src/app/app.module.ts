@@ -10,6 +10,8 @@ import { PhotoModalComponent } from './components/photo-modal/photo-modal.compon
 import { NavComponent } from './components/nav/nav.component';
 import { SearcherComponent } from './components/searcher/searcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     InfiniteScrollModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

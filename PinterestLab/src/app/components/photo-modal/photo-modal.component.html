@@ -1,14 +1,37 @@
-<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
   <div class="modal-content">
     <div class="row">
       <div class="col-6">
-        <img src="{{infoPhotoModal?.urls.small}}" alt="">
+        <img class="photo" src="{{infoPhotoModal?.links.download}}" alt="">
       </div>
-      <div class="col-6">
+      <div class="columnDescription col-6 pl-4">
         <h2>{{infoPhotoModal?.alt_description}}</h2>
-        <img src="{{infoPhotoModal?.user.profile_image.small}}" alt="">
+        <div>
+          <img class="img-user rounded-circle" src="{{infoPhotoModal?.user.profile_image.small}}" alt="">
         <span>{{infoPhotoModal?.user.name}}</span>
-        <a href="{{infoPhotoModal?.user.links.followers}}">holaaaa</a>
+        </div>
+        <table class="text-center">
+          <tr>
+            <td>{{infoPhotoModal?.likes}}</td>
+            <td>Me gusta</td>
+          </tr>
+          <tr>
+            <td>{{infoPhotoModal?.views}}</td>
+            <td>Vistas</td>
+          </tr>
+          <tr>
+            <td>{{infoPhotoModal?.downloads}}</td>
+            <td>Descargas</td>
+          </tr>
+        </table>
+        <div>
+          <h5 [ngStyle]="{'color': infoPhotoModal?.color}">Tags</h5>
+          <div class="tags">
+            <ul>
+              <li *ngFor="let tags of infoPhotoModal?.tags" [ngStyle]="{'border-color': infoPhotoModal?.color}">{{tags?.title}}</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

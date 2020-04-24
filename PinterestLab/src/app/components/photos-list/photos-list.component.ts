@@ -11,7 +11,9 @@ export class PhotosListComponent implements OnInit {
   arrPhotos: any[];
   infoPhoto: any;
   constructor( private authService: AuthService) {
-
+    this.authService.currentQueryString.subscribe( (response) => {
+      this.arrPhotos = response;
+    });
    }
 
   ngOnInit(): void {
@@ -22,7 +24,6 @@ export class PhotosListComponent implements OnInit {
     this.authService.getListPhotos(1)
     .subscribe(response => {
       this.arrPhotos = response;
-      console.log(response);
     });
   }
 

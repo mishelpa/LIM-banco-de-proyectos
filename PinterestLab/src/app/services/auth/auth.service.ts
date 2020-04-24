@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 
@@ -12,6 +12,13 @@ export class AuthService {
   public urlAPI: string;
   constructor( private http: HttpClient) {
     this.urlAPI = environment.apiURL;
+  }
+
+  queryString = new BehaviorSubject([]);
+  currentQueryString = this.queryString.asObservable();
+
+  changeString(query) {
+    this.queryString.next(query);
   }
 
   getListPhotos(page): Observable<any> {
@@ -26,6 +33,8 @@ export class AuthService {
     return this.http.get(`${this.urlAPI}search/photos/?page=1&order_by=latest&query=${value}`);
   }
 
-
+  downloadPhotos(id) {
+    return this.http.get(`${this.urlAPI}photos/${id}/download`);
+  }
 
 }
