@@ -10,11 +10,15 @@ export class PhotosListComponent implements OnInit {
 
   arrPhotos: any[];
   infoPhoto: any;
+  inputValue: string;
   constructor( private authService: AuthService) {
     this.authService.currentQueryString.subscribe( (response) => {
       this.arrPhotos = response;
     });
-   }
+    this.authService.currentInputValue.subscribe( (response) => {
+      this.inputValue = response;
+    });
+  }
 
   ngOnInit(): void {
     this.post();
@@ -29,10 +33,16 @@ export class PhotosListComponent implements OnInit {
 
   postNext() {
     const numPage = (this.arrPhotos.length / 20) + 1;
-    this.authService.getListPhotos(numPage)
-    .subscribe(response => {
-      this.arrPhotos = this.arrPhotos.concat(response);
-    });
+    if (this.inputValue === '') {
+      this.authService.getListPhotos(numPage)
+      .subscribe(response => {
+        this.arrPhotos = this.arrPhotos.concat(response);
+      });
+    } else {
+      this.authService.getCollection(numPage, this.inputValue).subscribe(response => {
+        this.arrPhotos = this.arrPhotos.concat(response['results']);
+      });
+    }
   }
 
   onScrollDown() {
@@ -40,7 +50,6 @@ export class PhotosListComponent implements OnInit {
   }
 
   onScrollUp() {
-    console.log('scrollUp funcionando');
     if (this.arrPhotos.length >= 40) {
       this.arrPhotos.length = this.arrPhotos.length - 20;
     }
@@ -48,7 +57,6 @@ export class PhotosListComponent implements OnInit {
 
   saveIdPhoto(id) {
     this.authService.getPhotoById(id).subscribe(data => {
-      console.log(data);
       this.infoPhoto = data;
     });
   }

@@ -17,8 +17,15 @@ export class AuthService {
   queryString = new BehaviorSubject([]);
   currentQueryString = this.queryString.asObservable();
 
+  inputValue = new BehaviorSubject('');
+  currentInputValue = this.inputValue.asObservable();
+
   changeString(query) {
     this.queryString.next(query);
+  }
+
+  changeInputValue(input) {
+    this.inputValue.next(input);
   }
 
   getListPhotos(page): Observable<any> {
@@ -29,12 +36,7 @@ export class AuthService {
     return this.http.get(`${this.urlAPI}photos/${id}`);
   }
 
-  getCollection(value) {
-    return this.http.get(`${this.urlAPI}search/photos/?page=1&order_by=latest&query=${value}`);
+  getCollection(page, value) {
+    return this.http.get(`${this.urlAPI}search/photos/?page=´${page}´&per_page=20&order_by=latest&query=${value}`);
   }
-
-  downloadPhotos(id) {
-    return this.http.get(`${this.urlAPI}photos/${id}/download`);
-  }
-
 }

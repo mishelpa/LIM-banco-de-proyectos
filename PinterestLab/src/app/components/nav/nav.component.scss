@@ -1,22 +1,15 @@
 nav{
   display: flex;
-  justify-content: flex-start;
-  padding: 1% 2% 0%;
+  justify-content: space-around;
+  padding: 2% 2% 0%;
+  font-family: 'Segoe UI';
   img{
     width: 4%;
     height: 4%;
   }
-  ul{
-    width: 80%;
-    list-style: none;
-    overflow: hidden;
-
-    li{
-      display: inline;
-      color: rgb(17, 17,17);
-      font-weight: 700;
-      margin: 0% 2%;
-    }
+  h1{
+    font-weight: 700;
+    font-size: 300%;
   }
 }
 

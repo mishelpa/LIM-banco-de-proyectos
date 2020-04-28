@@ -16,16 +16,16 @@ export class SearcherComponent implements OnInit {
   }
 
   getCollectionbyInput(event) {
-    console.log(event.target.value);
-    if (event.target.value === '') {
+    this.authService.changeInputValue(this.collection.value);
+    if (this.collection.value === '') {
       this.authService.getListPhotos(1)
       .subscribe(response => {
         this.authService.changeString(response);
       });
-    }
-    this.authService.getCollection(event.target.value).subscribe(response => {
+    } else {
+    this.authService.getCollection(1, event.target.value).subscribe(response => {
       this.authService.changeString(response['results']);
     });
+    }
   }
-
 }

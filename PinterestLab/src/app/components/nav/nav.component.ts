@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
+  public title: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.title = 'Pinterest <L>';
   }
 
 }
