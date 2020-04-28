@@ -64,16 +64,13 @@ Durante el desarrollo del proyecto se realizo las siguientes historias de usuari
 
 * Página de Inicio
 
-  ![Pantalla de inicio](assets/screen1.JPG)
+  ![Pantalla de inicio](src/assets/screen1.JPG)
 
 * Modal
 
-  ![Modal](assets/modal.JPG)
+  ![Modal](src/assets/modal.JPG)
 
 * Búsqueda
 
-  ![Búsqueda](assets/search.JPG)
+  ![Búsqueda](src/assets/search.JPG)
 
-
-
-  
